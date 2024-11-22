@@ -8,7 +8,7 @@
     <style>
       @font-face {
         font-family: "JannaLT";
-        src: url("../Fonts/ArbFONTS-Janna-LT-Regular.ttf") format("truetype");
+        src: url("./Fonts/ArbFONTS-Janna-LT-Regular.ttf") format("truetype");
       }
       @media screen and (max-width: 600px) {
         .stack-column,
@@ -28,11 +28,44 @@
           margin: 0 auto !important;
         }
       }
+      h1 {
+        font-size: 29px; /* تحديد الحجم بـ بكسل */
+      }
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+
+      .modal-content {
+        background-color: #e9eaea;
+        color: #333;
+        padding: 20px;
+        border-radius: 8px;
+        width: 300px;
+        text-align: center;
+        position: relative;
+      }
+
+      .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 30px;
+        cursor: pointer;
+      }
     </style>
-    <link
+    <!-- <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
       rel="stylesheet"
-    />
+    /> -->
   </head>
   <body
     style="
@@ -94,10 +127,11 @@
                         padding-top: 15px;
                         margin-left: auto;
                         margin-right: auto;
+                        margin-bottom: 20px;
                       "
                     />
 
-                    <h1>البوابة الأولى لتنظيم العمل الحر في فلسطين</h1>
+                    <h1>فواتيري البوابة الأولى لتنظيم العمل الحر في فلسطين</h1>
                   </td>
                 </tr>
               </table>
@@ -314,11 +348,59 @@
                         </g>
                       </svg>
                     </a>
+                    <a
+                      href="https://wa.me/970595532700"
+                      target="_blank"
+                      class="display: inline-block; margin: 5px"
+                    >
+                      <img
+                        src="./imgs/whatsapp.png"
+                        alt="واتساب"
+                        style="width: 30px; height: 30px"
+                      />
+                    </a>
                   </td>
                 </tr>
               </table>
             </td>
           </tr>
+
+          <!-- model -->
+          <div id="emailForm" style="display: none">
+            <div class="modal">
+              <div class="modal-content">
+                <span class="close" onclick="closeEmailForm()">&times;</span>
+                <h2>أرسل لنا رسالة</h2>
+                <form
+                  action="mailto:support@mtcgaza.com"
+                  method="POST"
+                  enctype="text/plain"
+                >
+                  <label for="email">بريدك الإلكتروني:</label><br />
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                  /><br /><br />
+
+                  <label for="subject">عنوان الرسالة:</label><br />
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    required
+                  /><br /><br />
+
+                  <label for="message">نص الرسالة:</label><br />
+                  <textarea id="message" name="message" required></textarea
+                  ><br /><br />
+
+                  <button type="submit">إرسال</button>
+                </form>
+              </div>
+            </div>
+          </div>
 
           <!-- Footer -->
           <tr>
@@ -326,41 +408,40 @@
               <table width="100%" style="border-spacing: 0" role="presentation">
                 <tr>
                   <!-- Contact Info Section -->
-                  <td class="col-12 col-md-4 text-center mb-2 mb-md-0">
+                  <td>
                     <!-- استخدام Flexbox لعرض النصوص عموديًا -->
-                    <div class="d-flex flex-column align-items-center">
+                    <div
+                      style="
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                      "
+                    >
                       <p
-                        class="mb-0 mt-1 fs-6 fw-bold text-white"
-                        style="font-size: 0.85rem"
+                        style="
+                          font-size: 18px;
+                          color: #dddbdb;
+                          margin-bottom: 0px;
+                          margin-top: 1px;
+                        "
                       >
                         تواصل معنا:
                       </p>
                       <p
-                        class="mb-0 mt-1 text-white fw-bold"
-                        style="font-size: 0.85rem"
+                        style="
+                          font-size: 16px;
+                          color: #dddbdb;
+                          margin-bottom: 0px;
+                          margin-top: 1px;
+                        "
                       >
                         البريد الإلكتروني:
-                        <a class="text-decoration-none text-warning fw-bold">
-                          support@mtcgaza.com
-                        </a>
-                      </p>
-                      <!-- واتساب -->
-                      <p
-                        class="mb-2 mt-1 fw-bold d-flex align-items-center fs-6"
-                        style="font-size: 0.85rem; margin-top: 8px"
-                      >
                         <a
-                          href="https://wa.me/970595532700"
-                          target="_blank"
-                          class="text-decoration-none text-warning d-flex align-items-center"
+                          href="#"
+                          style="color: #ffc107"
+                          onclick="openEmailForm()"
+                          >support@mtcgaza.com</a
                         >
-                          <img
-                            src="./imgs/whatsapp.png"
-                            alt="واتساب"
-                            style="width: 20px; height: 20px; margin-left: 8px"
-                          />
-                          تواصل معنا عبر واتساب
-                        </a>
                       </p>
                     </div>
                   </td>
@@ -370,9 +451,10 @@
                     <p
                       style="
                         color: #ffffff;
-                        font-size: 14px;
+                        font-size: 16px;
                         line-height: 20px;
                         margin: 0;
+                        margin-top: 10px;
                       "
                     >
                       جميع الحقوق محفوظة Bill.ps ©
@@ -410,5 +492,18 @@
             <![endif]-->
       </div>
     </center>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script>
+      function openEmailForm() {
+        document.getElementById("emailForm").style.display = "block";
+      }
+
+      function closeEmailForm() {
+        document.getElementById("emailForm").style.display = "none";
+      }
+      window.openEmailForm = openEmailForm;
+      window.closeEmailForm = closeEmailForm;
+    </script>
   </body>
 </html>
